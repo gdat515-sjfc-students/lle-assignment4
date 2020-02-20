@@ -14,13 +14,13 @@ library(plotly)
 
 ```
 
-#Question of Interest
+### Question of Interest
 Our current sales contest rewards successful emails, successful calls and client meetings. Meetings are always the goal, and they are achieved through successful emails and calls.   This business started out primarily by outbound phone calls.  With advancements in technology, there are many more ways to connect with prospects.   Because we are investing in more email automation technologies, I'm wondering if more successful emails lead to more client meetings.
 
 This data includes AVP Successful Activities for 8 weeks, from February - March 2019.  I collected this data from many different reports in Salesforce.  When completing Assignment 2, I reshaped the data and made it more useful for analysis.  I then anonymized the data for the purpose of this assignment.
 
-#Answer
-There appears to be a positive correlation between Successful Emails and Meetings.  Interestingly, only AVP's with more than average Successful Emails had more than Average Meetings.  Also, more than Average Successful Emails does not guarentee more than Average Successful Calls.  For further analysis, I recommend looking at the type of emails that are being sent.  I expect more emails to be exchanged as a sale comes to a close.  I'm interested in knowing how many true prospecting emails (ie. email blasts, phone call follow-up), and the impact they have on scheduling meetings with new businesses.
+### Answer
+There appears to be a positive correlation between Successful Emails and Meetings.  AVP's send an average of 80 successful emails, and have an average of 15 meetings.  Interestingly, only AVP's with more than average Successful Emails had more than Average Meetings.  Also, more than Average Successful Emails does not guarentee more than Average Successful Calls.  For further analysis, I recommend looking at the type of emails that are being sent.  I expect more emails to be exchanged as a sale comes to a close.  I'm interested in knowing if true prospecting emails (ie. blasts, drip campaigns)impact the quantity of meetings with new businesses.
 
 ```{r data}
 
@@ -47,7 +47,7 @@ plot_ly(data=mydata, x = ~EmailTotal, y = ~MeetingTotal,
   add_segments(x = 80, xend = 80, yend = 0, name = 'Avg # Successful Emails per AVP') %>%
   add_segments(x = 0, xend = 600, y = 15, yend = 15, name = 'Avg # Meetings per AVP') %>%
   layout(xaxis = list(title = "Number of Successful Emails"),
-         yaxis = list(title = "Number Meetings"),
+         yaxis = list(title = "Number of Meetings"),
          title = "Positive correlation between Successful Emails and Meetings")
 
 ```
