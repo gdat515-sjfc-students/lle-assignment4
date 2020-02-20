@@ -1,0 +1,45 @@
+---
+title: "lle-assignment4-improved"
+author: "Laura Le"
+date: "2/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(dplyr)
+library(plotly)
+
+```
+
+
+```{r data}
+
+mydata <- read.csv("AVPTotalsAnonymous.csv")
+head(mydata)
+summary(mydata)
+
+mydata <- mydata %>%mutate(
+  ID = as.character(ID))
+
+plot_ly(data=mydata, x = ~CallTotal, y = ~MeetingTotal)
+plot_ly(data=mydata, x = ~EmailTotal, y = ~MeetingTotal)
+
+#comparing Email Totals to Meeting Totals proves to be a more interesting graph
+
+```
+```{r}
+
+plot_ly(data=mydata, x = ~EmailTotal, y = ~MeetingTotal,
+        text = ~paste0("ID#  ", ID), name = 'Each AVP')%>%
+  add_trace(p=., type = "scatter")%>%
+  add_segments(x = 80, xend = 80, yend = 0, name = 'Average number of Successful Emails') %>%
+  add_segments(x = 0, xend = 600, y = 15, yend = 15, name = 'Average number Meetings') %>%
+  layout(xaxis = list(title = "Number of Successful Emails"),
+         yaxis = list(title = "Number of Virtual and In-person Meetings"),
+         title = "Positive correlation between Successful Emails and Meetings")
+
+```
+
